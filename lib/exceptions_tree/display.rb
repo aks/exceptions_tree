@@ -25,7 +25,7 @@ module ExceptionsTree
 
     def inspect_exceptions_tree(tree, level)
       output = ''
-      tree.keys.sort {|k1, k2| k1.name <=> k2.name}.each do |class_name|
+      tree.keys.reject {|c| c.name.nil? }.sort {|k1, k2| k1.name <=> k2.name}.each do |class_name|
         output += sprintf("%s%s\n", ('  ' * level), class_name)
         output += inspect_exceptions_tree(tree[class_name], level+1)
       end
